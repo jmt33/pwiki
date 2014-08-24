@@ -20,19 +20,19 @@ Quick Start
 -----
 
 ```
-./pwiki status 
+php ./pwiki status 
 ```
 
 创建一个新的wiki
 -----
 
 ```
-./pwiki new -t "title" -c "category"
+php ./pwiki new -t "title" -c "category"
 ```
 
 生成html
 -----
 
 ```
-./pwiki generate [key] #key表示文件生成时候的时间
+php ./pwiki generate [key] #key表示文件生成时候的时间
 ```
