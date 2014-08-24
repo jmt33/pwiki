@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+include "../bootstrap.php";
+
+new \Console\PhpwikiApplication();
+exit();
+
+
+
+
+echo $my_html;
+exit();
+
+
+echo $html;
