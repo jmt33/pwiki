@@ -45,6 +45,11 @@ class PhpwikiApplication
         }
     }
 
+    private function _status()
+    {
+        exit('功能暂未开发');
+    }
+
     public function getAction()
     {
         return $this->commands[1];
