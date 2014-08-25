@@ -6,19 +6,26 @@ use \Michelf\MarkdownExtra;
 
 class Convert
 {
+	private $_key = '';
 	private $_htmlFile = '';
 	private $_htmlCategory = '';
 	private $_markdown = '';
 	private $_data = array();
 	public function __construct($key)
 	{
-		$this->_configure($key);
+		$this->_key = $key;
 	}
 
-	private function _configure($key)
+	public function setData($data)
 	{
-		$this->_data = FileData::getData();
+		$this->_data = $data;
+		$this->_configure();
+	}
+
+	private function _configure()
+	{
 		$data = $this->_data;
+		$key = $this->_key;
 		if (!isset($data[$key])) {
 			throw new \Exception("没有此文件", 1);
 		} else {
@@ -36,13 +43,23 @@ class Convert
 
 	public function readyPageContent()
 	{
+
 		if ($this->_markdown) {
 			if (!is_dir($this->_htmlCategory)) {
 				mkdir($this->_htmlCategory, 0777);
 			}
+			$content = $this->_data[$this->_key];
+			$head_html = "
+			<div id='post-nav'>
+				<a href='../../index.html'>Home</a>&nbsp;»&nbsp;
+				<a href='../../index.html#{$content['category']}'>{$content['category']}</a>&nbsp;»&nbsp;{$content['title']}
+			</div>
+			";
+
 			$text = file_get_contents($this->_markdown);
 			$page_html = MarkdownExtra::defaultTransform($text);
 
+			$page_html = $head_html.$page_html;
 			$handle = fopen($this->_htmlFile, "w");
 			$contents = fwrite($handle, $this->renderPage($page_html));
 			fclose($handle);
@@ -91,8 +108,8 @@ HTML;
     <head>
         <meta charset=utf-8>
         <title>PHP Markdown Lib - Readme</title>
-        <link href="http://demo.simiki.org/static/css/tango.css" rel="stylesheet"></link>
-        <link href="http://demo.simiki.org/static/css/style.css" rel="stylesheet"></link>
+        <link href="http://jmt33.github.io/mtao/static/css/tango.css" rel="stylesheet"></link>
+        <link href="http://jmt33.github.io/mtao/static/css/style.css" rel="stylesheet"></link>
     </head>
     <body>
         <div id="container">
@@ -111,8 +128,8 @@ HTML;
 			<!DOCTYPE HTML>
 			<html>
 			    <head>
-			        <link rel="Stylesheet" type="text/css" href="http://demo.simiki.org/static/css/style.css">
-			        <link rel="Stylesheet" type="text/css" href="http://demo.simiki.org/static/css/tango.css">
+			        <link rel="Stylesheet" type="text/css" href="http://jmt33.github.io/mtao/static/css/tango.css">
+			        <link rel="Stylesheet" type="text/css" href="http://jmt33.github.io/mtao/static/css/style.css">
 			        <title>MtaoWiKi</title>
 			        <meta name="keywords" content="wiki"/>
 			        <meta name="description" content="This is a demo wiki"/>
@@ -121,7 +138,7 @@ HTML;
 
 			    <body>
 			        <div id="container">
-			            
+
 				    <div id="wiki_title">MtaoWiKi</div>
 
 				    <div id="index">
@@ -135,7 +152,7 @@ HTML;
 			                Copyright © 2012-2014 Mtao.
 			            </span>
 			        </div>
-			        
+
 			    </body>
 			</html>
 HTML;
