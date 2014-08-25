@@ -32,7 +32,7 @@ class PhpwikiApplication
     private function _new()
     {
         $count = count($this->commands);
-        if ($count !== 6 || $this->commands['2'] !== '-t' || $this->commands['2'] !== '-c') {
+        if ($count !== 6 || $this->commands['2'] !== '-t' || $this->commands['4'] !== '-c') {
             throw new \Exception("参数错误", 1);
         }
     }
