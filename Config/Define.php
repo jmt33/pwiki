@@ -9,4 +9,4 @@ define('HTMLPATH', DOCROOT.'../mtao/Html'.DIRECTORY_SEPARATOR);
 # 引导index.html
 define('HTMLINDEXPATH', HTMLPATH.'/../index.html');
 
-define('HTMLINDEXPATH', HTMLPATH.'/../log.json');
+define('HTMLINDEXPATH', HTMLPATH.'/../.log.json');
