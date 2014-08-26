@@ -24,6 +24,6 @@ class Filedata {
 
 	public static function getLogPath()
 	{
-		return DOCROOT."/log.json";
+		return DATABASEPATH;
 	}
 }
