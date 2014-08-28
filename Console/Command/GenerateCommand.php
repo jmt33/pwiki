@@ -2,6 +2,7 @@
 namespace Console\Command;
 use \Adapter\Convert;
 use \Adapter\FileData;
+use \Adapter\Helper;
 
 class GenerateCommand extends AbstractCommand
 {
@@ -30,7 +31,7 @@ class GenerateCommand extends AbstractCommand
 		$this->setCommands($commands);
 
 		if (!isset($this->commands[2]) || !in_array($this->commands[2], self::$params)) {
-			throw new \Exception("参数错误", 1);
+			Helper::writeln("参数错误", "error");
 		}
 
 		$param = $this->commands[2];
@@ -40,7 +41,10 @@ class GenerateCommand extends AbstractCommand
 			true :
 			false;
 
-		if ($this->commands[2] == '-s' && isset($this->commands[3])) {
+		if ($this->commands[2] == '-s') {
+			if (!isset($this->commands[3])) {
+				Helper::writeln("少了要生成的版本~", "error");
+			}
 			$keys[] = $this->commands[3];
 		} else {
 			$keys = array_keys($data);

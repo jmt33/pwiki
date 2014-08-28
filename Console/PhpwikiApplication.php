@@ -1,6 +1,6 @@
 <?php 
 namespace Console;
-
+use \Adapter\Helper;
 class PhpwikiApplication
 {
     public $command = array();
@@ -33,7 +33,7 @@ class PhpwikiApplication
     {
         $count = count($this->commands);
         if ($count !== 6 || $this->commands['2'] !== '-t' || $this->commands['4'] !== '-c') {
-            throw new \Exception("参数错误", 1);
+            Helper::writeln("参数错误", "error");
         }
     }
 
@@ -41,13 +41,13 @@ class PhpwikiApplication
     {
         $count = count($this->commands);
         if ($count < 2) {
-            throw new \Exception("参数错误", 1);
+            Helper::writeln("参数错误", "error");
         }
     }
 
     private function _status()
     {
-        exit('功能暂未开发');
+        Helper::writeln("功能暂未开发", "error");
     }
 
     public function getAction()
