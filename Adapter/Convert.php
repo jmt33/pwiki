@@ -10,16 +10,13 @@ class Convert
 	private $_htmlFile = '';
 	private $_htmlCategory = '';
 	private $_markdown = '';
+	# 是否强制覆盖
+	private $_isOverFlow = false;
+
 	private $_data = array();
 	public function __construct($key)
 	{
 		$this->_key = $key;
-	}
-
-	public function setData($data)
-	{
-		$this->_data = $data;
-		$this->_configure();
 	}
 
 	private function _configure()
@@ -43,8 +40,11 @@ class Convert
 
 	public function readyPageContent()
 	{
-
 		if ($this->_markdown) {
+			#如果不强制生成
+			if (!$this->_isOverFlow && is_file($this->_htmlFile)) {
+				return;
+			}
 			if (!is_dir($this->_htmlCategory)) {
 				mkdir($this->_htmlCategory, 0777);
 			}
@@ -157,6 +157,17 @@ HTML;
 			</html>
 HTML;
 		return $html;
+	}
+
+	public function setData($data)
+	{
+		$this->_data = $data;
+		$this->_configure();
+	}
+
+	public function setOverFlow($overFlow)
+	{
+		$this->_isOverFlow = $overFlow;
 	}
 }
 ?>
