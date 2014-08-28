@@ -26,19 +26,26 @@ Quick Start
 -----------
 
 ```
-php ./pwiki status 
+php ./bin/pwiki status 
 ```
 
 创建一个新的wiki
 -----------
 
 ```
-php ./pwiki new -t "title" -c "category"
+php ./bin/pwiki new -t "title" -c "category"
 ```
 
 生成html
 -----------
 
 ```
-php ./pwiki generate [key] #key表示文件生成时候的时间
+$ php ./bin/pwiki generate -r
+
+Usage: php ./bin/pwiki [options]
+
+-s (key)  单个文件生成
+-i        忽略已生成文件
+-r        全部生成
 ```
+
