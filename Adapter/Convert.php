@@ -1,8 +1,7 @@
 <?php
 namespace Adapter;
 use \Adapter\FileData;
-use \Adapter\Markdown;
-use \Michelf\MarkdownExtra;
+use \Tool\Markdown;
 
 class Convert
 {
@@ -57,7 +56,10 @@ class Convert
 			";
 
 			$text = file_get_contents($this->_markdown);
-			$page_html = MarkdownExtra::defaultTransform($text);
+
+			$markdown = new Markdown();
+
+			$page_html = $markdown->text($text);
 
 			$page_html = $head_html.$page_html;
 			$handle = fopen($this->_htmlFile, "w");

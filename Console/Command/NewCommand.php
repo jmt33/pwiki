@@ -2,7 +2,6 @@
 namespace Console\Command;
 use \Adapter\FileData;
 use \Adapter\Markdown;
-use \Michelf\MarkdownExtra;
 
 class NewCommand extends AbstractCommand
 {
