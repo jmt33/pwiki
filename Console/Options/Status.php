@@ -23,17 +23,5 @@ EOT
     public function execute(InputInterface $input, OutputInterface $output)
     {
 
-        // $ent = $input->getArgument('ent');
-
-        // if ($input->getArgument('deluser') == 'true') {
-        //     \Services('ent')->del($ent, true);
-        // } else {
-        //     \Services('ent')->del($ent, false);
-        // }
-
-        // $this->_w_info('ent:del Success!');
     }
-
-
-
 }
