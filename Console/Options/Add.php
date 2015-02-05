@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 
-class Add extends \Console\Output
+class Add extends \Console\AbstractOption
 {
     public function configure()
     {
