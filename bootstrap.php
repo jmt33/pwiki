@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
 
 define('EXT', '.php');
 define('DOCROOT', realpath(__DIR__) . '/');
