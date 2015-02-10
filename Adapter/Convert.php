@@ -132,7 +132,7 @@ HTML;
 			    <head>
 			        <link rel="Stylesheet" type="text/css" href="http://jmt33.github.io/mtao/static/css/tango.css">
 			        <link rel="Stylesheet" type="text/css" href="http://jmt33.github.io/mtao/static/css/style.css">
-			        <title>MtaoWiKi</title>
+			        <title>为什么坚持，想一想当初</title>
 			        <meta name="keywords" content="wiki"/>
 			        <meta name="description" content="This is a demo wiki"/>
 			        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
