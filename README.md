@@ -23,33 +23,30 @@ Quick Start
 查看帮助
 -----------
 
-```shell
-./bin/pwiki
-```
+    $ ./bin/pwiki
 
 查看目前状态，有哪些列表
 -----------
 
-```shell
-./bin/pwiki status 
-```
+
+    $ ./bin/pwiki status 
+
 
 创建一个新的wiki
 -----------
 
-```shell
-./bin/pwiki new title category
-```
+
+    $ ./bin/pwiki new title category
+
 
 生成html
 -----------
 
-```shell
-$ php ./bin/pwiki generate all
 
-Usage: php ./bin/pwiki [options]
+    $ ./bin/pwiki generate all
 
-one (key)  单个文件生成
-ignore        忽略已生成文件
-all        全部生成
-```
+    Usage: php ./bin/pwiki [options]
+
+    one (key)  单个文件生成
+    ignore        忽略已生成文件
+    all        全部生成
