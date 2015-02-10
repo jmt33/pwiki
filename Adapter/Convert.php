@@ -141,7 +141,7 @@ HTML;
 			    <body>
 			        <div id="container">
 
-				    <div id="wiki_title">MtaoWiKi</div>
+				    <div id="wiki_title">为什么坚持，想一想当初</div>
 
 				    <div id="index">
 				    	{$index_html}
