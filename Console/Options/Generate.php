@@ -38,7 +38,7 @@ EOT
             $keys = array_keys($data);
         } else {
             $key = $input->getArgument('key');
-            if (!$key) {
+            if ($key) {
                 $keys[] = $input->getArgument('key');
             } else {
                 $this->_w_error('参数错误');
