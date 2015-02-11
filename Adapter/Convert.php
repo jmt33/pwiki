@@ -63,7 +63,7 @@ class Convert
 
 			$page_html = $head_html.$page_html;
 			$handle = fopen($this->_htmlFile, "w");
-			$contents = fwrite($handle, $this->renderPage($page_html));
+			$contents = fwrite($handle, $this->renderPage($page_html, $content));
 			fclose($handle);
 		}
 	}
@@ -102,14 +102,14 @@ HTML;
 		fclose($handle);
 	}
 
-	public function renderPage($page_html)
+	public function renderPage($page_html, $content)
 	{
 		$html = <<<HTML
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset=utf-8>
-        <title>PHP Markdown Lib - Readme</title>
+        <title>{$content['title']} - {$content['category']}</title>
         <link href="http://jmt33.github.io/mtao/static/css/tango.css" rel="stylesheet"></link>
         <link href="http://jmt33.github.io/mtao/static/css/style.css" rel="stylesheet"></link>
     </head>
@@ -133,8 +133,8 @@ HTML;
 			        <link rel="Stylesheet" type="text/css" href="http://jmt33.github.io/mtao/static/css/tango.css">
 			        <link rel="Stylesheet" type="text/css" href="http://jmt33.github.io/mtao/static/css/style.css">
 			        <title>为什么坚持，想一想当初</title>
-			        <meta name="keywords" content="wiki"/>
-			        <meta name="description" content="This is a demo wiki"/>
+			        <meta name="keywords" content="wiki, mtao, pwiki"/>
+			        <meta name="description" content="锋利的wiki小工具， This is a demo wiki"/>
 			        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 			    </head>
 
