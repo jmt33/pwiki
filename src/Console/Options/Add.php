@@ -1,14 +1,14 @@
 <?php
-namespace Console\Options;
+namespace Pwiki\Console\Options;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use \Adapter\FileData;
-use \Adapter\Markdown;
+use Pwiki\Adapter\FileData;
+use Pwiki\Adapter\Markdown;
 
-class Add extends \Console\AbstractOption
+class Add extends \Pwiki\Console\AbstractOption
 {
     public function configure()
     {

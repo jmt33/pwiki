@@ -1,11 +1,11 @@
 <?php
-namespace Console;
-use \Symfony\Component\Console\Application;
+namespace Pwiki\Console;
+use Symfony\Component\Console\Application;
 
 class Run
 {
     public $Application = null;
-    
+
     const COMMANDS_PATH = 'Console/Options/';
 
     public function __construct()
@@ -21,14 +21,14 @@ class Run
 
     private function _scanCommandsDir()
     {
-        $path = DOCROOT . self::COMMANDS_PATH;
+        $path = __DIR__.'/Options';
         if (!is_dir($path)) {
             die('目录不存在');
         }
         $options = scandir($path);
         foreach ($options as $option) {
             if (!in_array($option, ['.', '..'])) {
-                $className = "\\Console\\Options\\". ucfirst(str_replace('.php', '', $option));
+                $className = "\\Pwiki\\Console\\Options\\". ucfirst(str_replace('.php', '', $option));
                 $this->_addCommands($className);
             }
         }

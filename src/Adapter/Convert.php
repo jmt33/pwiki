@@ -1,7 +1,8 @@
 <?php
-namespace Adapter;
-use \Adapter\FileData;
-use \Tool\Markdown;
+namespace Pwiki\Adapter;
+use Pwiki\Adapter\FileData;
+use Pwiki\Tool\Markdown;
+use Pwiki\Config;
 
 class Convert
 {
@@ -20,14 +21,15 @@ class Convert
 
 	private function _configure()
 	{
+		$config = Config::instance();
 		$data = $this->_data;
 		$key = $this->_key;
 		if (!isset($data[$key])) {
 			throw new \Exception("没有此文件", 1);
 		} else {
-			$this->_htmlCategory = HTMLPATH.$data[$key]['category']."/";
+			$this->_htmlCategory = $config->htmlPath.$data[$key]['category']."/";
 			$this->_htmlFile = $this->_htmlCategory.$key."_".$data[$key]['title'].".html";
-			$this->_markdown = MARKDOWNPATH.$key."_".$data[$key]['title'].".md";
+			$this->_markdown = $config->markdownPath.$key."_".$data[$key]['title'].".md";
 		}
 	}
 
@@ -97,7 +99,7 @@ class Convert
 HTML;
 		}
 
-		$handle = fopen(HTMLINDEXPATH, "w");
+		$handle = fopen(Config::instance()->htmlIndexFile, "w");
 		fwrite($handle, $this->renderIndex($html));
 		fclose($handle);
 	}

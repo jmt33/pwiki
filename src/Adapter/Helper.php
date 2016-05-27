@@ -1,5 +1,5 @@
-<?php 
-namespace Adapter;
+<?php
+namespace Pwiki\Adapter;
 class Helper {
 	public static function writeln($message, $type = "success")
 	{
@@ -16,7 +16,7 @@ RESULT;
 			exit();
         }
 
-        
+
 	}
 }
 ?>

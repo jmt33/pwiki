@@ -1,5 +1,5 @@
 <?php
-namespace Console;
+namespace Pwiki\Console;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Input\ArrayInput;
 

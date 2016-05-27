@@ -1,52 +1,37 @@
 Pwiki
 ============
 
-Pwiki develop version - 2014.8
+Pwiki develop version - 2.0.0
 
-by Mtao 
+by Mtao
 
 Introduction
 -------------------
 
-Pwiki 是一个简易的wiki框架，采用php语言编写, 引用了symfony console组件
+The Pwiki is a static page generator，it is github blog Artifact. base on symfony console lib
 
 Quick Start
 -------------------
 
+```shell
+test git:(master) ✗ php test/pwiki.php
+Console Tool
 
-配置
------------
-在使用时需设定 bootsrap.php 中常量 `HTMLPATH` `MARKDOWNPATH` 
-并建立相对应的文件夹已此来确定自己markdown文件与生成的html文件位置，
-如不设定默认为程序根目录
+Usage:
+command [options] [arguments]
 
-查看帮助
------------
+Options:
+-h, --help            Display this help message
+-q, --quiet           Do not output any message
+-V, --version         Display this application version
+    --ansi            Force ANSI output
+    --no-ansi         Disable ANSI output
+-n, --no-interaction  Do not ask any interactive question
+-v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
 
-    $ ./bin/pwiki
-
-查看目前状态，有哪些列表
------------
-
-
-    $ ./bin/pwiki status 
-
-
-创建一个新的wiki
------------
-
-
-    $ ./bin/pwiki new title category
-
-
-生成html
------------
-
-
-    $ ./bin/pwiki generate all
-
-    Usage: php ./bin/pwiki [options]
-
-    one (key)  单个文件生成
-    ignore        忽略已生成文件
-    all        全部生成
+Available commands:
+generate  文件生成
+help      Displays help for a command
+list      Lists commands
+new       新建Markdown
+```

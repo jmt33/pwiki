@@ -1,5 +1,5 @@
 <?php
-namespace Tool;
+namespace Pwiki\Tool;
 #
 #
 # Parsedown

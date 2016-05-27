@@ -1,5 +1,6 @@
-<?php 
-namespace Adapter;
+<?php
+namespace Pwiki\Adapter;
+use Pwiki\Config;
 
 class Markdown {
 	public static function getFile()
@@ -9,7 +10,8 @@ class Markdown {
 
 	public static function setFile($title)
 	{
-		$markdownFile = MARKDOWNPATH."/".$title.".md";
+		$config = Config::instance();
+		$markdownFile = $config->markdownPath."/".$title.".md";
 		$handle = fopen($markdownFile,"w");
 		fwrite($handle, "");
 		fclose($handle);

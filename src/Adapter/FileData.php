@@ -1,5 +1,7 @@
-<?php 
-namespace Adapter;
+<?php
+namespace Pwiki\Adapter;
+use Pwiki\Config;
+
 class Filedata {
 	public static function setData($data)
 	{
@@ -24,6 +26,6 @@ class Filedata {
 
 	public static function getLogPath()
 	{
-		return DATABASEPATH;
+		return Config::instance()->databaseFile;
 	}
 }

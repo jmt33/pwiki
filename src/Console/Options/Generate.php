@@ -1,15 +1,15 @@
 <?php
-namespace Console\Options;
+namespace Pwiki\Console\Options;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use \Adapter\Convert;
-use \Adapter\FileData;
-use \Adapter\Helper;
+use Pwiki\Adapter\Convert;
+use Pwiki\Adapter\FileData;
+use Pwiki\Adapter\Helper;
 
-class Generate extends \Console\AbstractOption
+class Generate extends \Pwiki\Console\AbstractOption
 {
     public function configure()
     {
@@ -31,11 +31,11 @@ EOT
         $data = FileData::getData();
 
         $type = $input->getArgument('type');
-        
+
         $ignore = $input->getArgument('ignore');
-        
+
         if ($type === 'all') {
-            $keys = array_keys($data);
+            $keys = empty($data) ? [] : array_keys($data);
         } else {
             $key = $input->getArgument('key');
             if ($key) {

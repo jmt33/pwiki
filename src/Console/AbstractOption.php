@@ -1,5 +1,5 @@
-<?php 
-namespace Console;
+<?php
+namespace Pwiki\Console;
 
 
 abstract class AbstractOption extends Output

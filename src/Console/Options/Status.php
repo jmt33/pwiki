@@ -1,12 +1,12 @@
 <?php
-namespace Console\Options;
+namespace Pwiki\Console\Options;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Status extends \Console\AbstractOption
+class Status extends \Pwiki\Console\AbstractOption
 {
     public function configure()
     {
