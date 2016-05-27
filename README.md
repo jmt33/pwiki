@@ -1,7 +1,7 @@
-Pwiki
+pwiki
 ============
 
-Pwiki develop version - 2.0.0
+pwiki develop version - 2.0.0
 
 by Mtao
 
