@@ -13,7 +13,8 @@ class PwikiTest
                 'markdownPath' => $dir."/markdown/",
                 'htmlPath' => $dir."/html/",
                 'htmlIndexFile' => $dir."/index.html",
-                'databaseFile' => $dir."/.log.json"
+                'databaseFile' => $dir."/.log.json",
+                'commentPlugin' => '<div id="uyan_frame"></div><script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2101665"></script>'
             )
         );
         // $config = \Pwiki\Config::instance();

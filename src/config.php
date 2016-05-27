@@ -11,6 +11,8 @@ class Config
 
     public $databaseFile = '';
 
+    public $commentPlugin = '';
+
     private static $instances = array();
 
     /**
@@ -39,5 +41,6 @@ class Config
         $this->htmlPath = $params['htmlPath'];
         $this->htmlIndexFile = $params['htmlIndexFile'];
         $this->databaseFile = $params['databaseFile'];
+        $this->commentPlugin = $params['commentPlugin'];
     }
 }

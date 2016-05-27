@@ -10,26 +10,28 @@ class Convert
 	private $_htmlFile = '';
 	private $_htmlCategory = '';
 	private $_markdown = '';
+	public $config = null;
+
 	# 是否强制覆盖
 	private $_isOverFlow = false;
 
 	private $_data = array();
 	public function __construct($key)
 	{
+		$this->config = Config::instance();
 		$this->_key = $key;
 	}
 
 	private function _configure()
 	{
-		$config = Config::instance();
 		$data = $this->_data;
 		$key = $this->_key;
 		if (!isset($data[$key])) {
 			throw new \Exception("没有此文件", 1);
 		} else {
-			$this->_htmlCategory = $config->htmlPath.$data[$key]['category']."/";
+			$this->_htmlCategory = $this->config->htmlPath.$data[$key]['category']."/";
 			$this->_htmlFile = $this->_htmlCategory.$key."_".$data[$key]['title'].".html";
-			$this->_markdown = $config->markdownPath.$key."_".$data[$key]['title'].".md";
+			$this->_markdown = $this->config->markdownPath.$key."_".$data[$key]['title'].".md";
 		}
 	}
 
@@ -56,7 +58,6 @@ class Convert
 				<a href='../../index.html#{$content['category']}'>{$content['category']}</a>&nbsp;»&nbsp;{$content['title']}
 			</div>
 			";
-
 			$text = file_get_contents($this->_markdown);
 
 			$markdown = new Markdown();
@@ -99,7 +100,7 @@ class Convert
 HTML;
 		}
 
-		$handle = fopen(Config::instance()->htmlIndexFile, "w");
+		$handle = fopen($this->config->htmlIndexFile, "w");
 		fwrite($handle, $this->renderIndex($html));
 		fclose($handle);
 	}
@@ -119,6 +120,7 @@ HTML;
         <div id="container">
             {$page_html}
         </div>
+		{$this->config->commentPlugin}
     </body>
 </html>
 HTML;
