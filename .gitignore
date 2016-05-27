@@ -1,7 +1,3 @@
-Html/
-Markdown/
-index.html
-log.json
 vendor/
 composer.lock
 bin/phpunit
