@@ -136,16 +136,16 @@ HTML;
 			    <head>
 			        <link rel="Stylesheet" type="text/css" href="http://jmt33.github.io/mtao/static/css/tango.css">
 			        <link rel="Stylesheet" type="text/css" href="http://jmt33.github.io/mtao/static/css/style.css">
-			        <title>为什么坚持，想一想当初</title>
-			        <meta name="keywords" content="wiki, mtao, pwiki"/>
-			        <meta name="description" content="锋利的wiki小工具， This is a demo wiki"/>
+			        <title>{$this->config->pageInfo['title']}</title>
+			        <meta name="keywords" content="{$this->config->pageInfo['keywords']}"/>
+			        <meta name="description" content="{$this->config->pageInfo['description']}"/>
 			        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 			    </head>
 
 			    <body>
 			        <div id="container">
 
-				    <div id="wiki_title">为什么坚持，想一想当初</div>
+				    <div id="wiki_title">有无相生，难易相成，长短相形，高下相盈，音声相和，前后相随。恒也 - 老子</div>
 
 				    <div id="index">
 				    	{$index_html}
@@ -155,7 +155,7 @@ HTML;
 			        </div>
 			        <div id="footer">
 			            <span>
-			                Copyright © 2012-2014 Mtao.
+			                Copyright © 2012-2016 Mtao.
 			            </span>
 			        </div>
 
@@ -176,4 +176,3 @@ HTML;
 		$this->_isOverFlow = $overFlow;
 	}
 }
-?>

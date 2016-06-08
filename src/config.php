@@ -13,6 +13,8 @@ class Config
 
     public $commentPlugin = '';
 
+    public $pageInfo = [];
+
     private static $instances = array();
 
     /**
@@ -37,6 +39,9 @@ class Config
 
     public function set($params)
     {
+        $this->pageInfo['title'] = isset($params['pageInfo']['title']) ? $params['pageInfo']['title'] : '';
+        $this->pageInfo['keywords'] = isset($params['pageInfo']['keywords']) ? $params['pageInfo']['keywords'] : '';
+        $this->pageInfo['description'] = isset($params['pageInfo']['description']) ? $params['pageInfo']['description'] : '';
         $this->markdownPath = $params['markdownPath'];
         $this->htmlPath = $params['htmlPath'];
         $this->htmlIndexFile = $params['htmlIndexFile'];
