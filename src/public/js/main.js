@@ -154,7 +154,7 @@
 	        ),
 	        React.createElement(
 	          "div",
-	          { className: "markdown-priview" },
+	          { className: "markdown-previewer" },
 	          React.createElement(
 	            "div",
 	            { id: "htmlArea",
