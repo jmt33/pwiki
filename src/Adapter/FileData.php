@@ -2,7 +2,7 @@
 namespace Pwiki\Adapter;
 use Pwiki\Config;
 
-class Filedata {
+class FileData {
 	public static function setData($data)
 	{
 		$nowData = static::getData();
