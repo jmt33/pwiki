@@ -20,6 +20,7 @@ class Convert
 	{
 		$this->config = Config::instance();
 		$this->_key = $key;
+		$this->setData($this->config->data);
 	}
 
 	private function _configure()
@@ -30,8 +31,8 @@ class Convert
 			throw new \Exception("没有此文件", 1);
 		} else {
 			$this->_htmlCategory = $this->config->htmlPath.$data[$key]['category']."/";
-			$this->_htmlFile = $this->_htmlCategory.$key."_".$data[$key]['title'].".html";
-			$this->_markdown = $this->config->markdownPath.$key."_".$data[$key]['title'].".md";
+			$this->_htmlFile = $this->_htmlCategory.$key."_".$data[$key]['category']."_".$data[$key]['title'].".html";
+			$this->_markdown = $this->config->markdownPath.$key."_".$data[$key]['category']."_".$data[$key]['title'].".md";
 		}
 	}
 
@@ -51,6 +52,7 @@ class Convert
 			if (!is_dir($this->_htmlCategory)) {
 				mkdir($this->_htmlCategory, 0777);
 			}
+
 			$content = $this->_data[$this->_key];
 			$head_html = "
 			<div id='post-nav'>

@@ -19,13 +19,11 @@ class Bootstrap
 
     public function getCategory()
     {
-        $data = \Pwiki\Adapter\FileData::getData();
+        $config = Config::instance();
         $category = [];
-        foreach ($data as $key => $value) {
-            if (!in_array($value['category'], $category)) {
-                $category[] = $value['category'];
-            }
-        }
-        return $category;
+        foreach ($config->data as $data) {
+            $category[] = $data['category'];
+        };
+        return array_values(array_unique($category));
     }
 }

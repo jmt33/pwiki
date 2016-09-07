@@ -9,7 +9,7 @@ class Config
 
     public $htmlIndexFile = '';
 
-    public $databaseFile = '';
+    public $data = [];
 
     public $commentPlugin = '';
 
@@ -45,7 +45,7 @@ class Config
         $this->markdownPath = $params['markdownPath'];
         $this->htmlPath = $params['htmlPath'];
         $this->htmlIndexFile = $params['htmlIndexFile'];
-        $this->databaseFile = $params['databaseFile'];
+        $this->data = $params['data'];
         $this->commentPlugin = $params['commentPlugin'];
     }
 }

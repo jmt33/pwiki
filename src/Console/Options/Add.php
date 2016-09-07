@@ -6,7 +6,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Pwiki\Adapter\FileData;
-use Pwiki\Adapter\Markdown;
+use Pwiki\Adapter\Source;
 
 class Add extends \Pwiki\Console\AbstractOption
 {
@@ -39,11 +39,8 @@ EOT
             'category' => $category
         );
 
-        FileData::setData($data);
-        Markdown::setFile($time."_".$title);
+        Source::setMarkdownFile($time."_".$category."_".$title);
         $this->_w_info('新建成功！');
     }
-
-
 
 }

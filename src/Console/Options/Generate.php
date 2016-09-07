@@ -28,10 +28,7 @@ EOT
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $data = FileData::getData();
-
         $type = $input->getArgument('type');
-
         $ignore = $input->getArgument('ignore');
 
         if ($type === 'all') {
@@ -48,7 +45,6 @@ EOT
         if (!empty($keys)) {
             foreach ($keys as $key) {
                 $convert = new Convert($key);
-                $convert->setData($data);
                 $convert->setOverFlow($ignore);
                 $convert->run();
             }
