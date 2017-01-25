@@ -13,8 +13,7 @@ class PwikiTest
 
     public function test($dir)
     {
-        $bootstrap = new \Pwiki\Bootstrap();
-        $bootstrap->setConfig(
+        $pwiki = new \Pwiki\Pwiki(
             array(
                 'pageInfo' => [
                     'title' => 'Mtao Blog',
@@ -28,7 +27,7 @@ class PwikiTest
                 'commentPlugin' => '<div id="uyan_frame"></div><script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2101665"></script>'
             )
         );
-        $bootstrap->run();
+        $pwiki->run();
     }
 }
 

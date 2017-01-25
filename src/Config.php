@@ -45,7 +45,27 @@ class Config
         $this->markdownPath = $params['markdownPath'];
         $this->htmlPath = $params['htmlPath'];
         $this->htmlIndexFile = $params['htmlIndexFile'];
-        $this->data = $params['data'];
+
+        $dataFun = function($folder) {
+            $files = scandir($folder);
+            $data = [];
+            foreach ($files as $file) {
+                if($file === '.' || $file === '..') {
+                   continue;
+                }
+                list($time, $category, $title) = explode('_', $file);
+                if ($time && $category && $title) {
+                    $data[$time] = [
+                        'key' => $time,
+                        'category' => $category,
+                        'title' => str_replace('.md', '', $title)
+                    ];
+                }
+            }
+            return $data;
+        };
+
+        $this->data = $dataFun($params['markdownPath']);
         $this->commentPlugin = $params['commentPlugin'];
     }
 }
