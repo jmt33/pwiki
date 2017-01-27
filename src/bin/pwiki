@@ -1,4 +1,17 @@
 #!/usr/bin/env php
 <?php
-$app = new \Console\Run();
+$files = array(
+    __DIR__ . '/../../vendor/autoload.php',
+    __DIR__ . '/../../../autoload.php',
+    __DIR__ . '/../../../../autoload.php',
+    __DIR__ . '/../vendor/autoload.php',
+);
+
+foreach ($files as $file) {
+    if (file_exists($file)) {
+        require_once $file;
+        break;
+    }
+}
+$app = new \Pwiki\Console\Run();
 $app->start();
