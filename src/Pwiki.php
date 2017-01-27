@@ -2,6 +2,8 @@
 namespace Pwiki;
 class Pwiki
 {
+    public $config = null;
+
     public function __construct($params)
     {
         Config::initialize(
@@ -9,6 +11,7 @@ class Pwiki
                 $cfg->set($params);
             }
         );
+        $this->config = Config::instance();
     }
 
     public function run()
@@ -17,48 +20,105 @@ class Pwiki
         $runner->start();
     }
 
+    /**
+     * 获取分类列表
+     * @return Array
+     */
     public function getCategory()
     {
-        $config = Config::instance();
         $category = [];
-        foreach ($config->data as $data) {
+        foreach ($this->config->data as $data) {
             $category[] = $data['category'];
         };
         return array_values(array_unique($category));
     }
 
-    public static function setMarkdownFile($title)
+    /**
+     * 获取所有文章
+     * @return Array
+     */
+    public function getArticles()
+    {
+        $articles = [];
+        foreach ($this->config->data as $data) {
+            $articles[] = $data;
+        };
+        return $articles;
+    }
+
+    /**
+     * 根据分类获取文章列表
+     * @param  String $category 分类
+     * @return Array
+     */
+    public function getArticleByCategory($category)
+    {
+        $articles = [];
+        foreach ($this->config->data as $data) {
+            if ($data['category'] === $category) {
+                $articles[] = $data;
+            }
+        };
+        return $articles;
+    }
+
+    /**
+     * 新建Markdown文件
+     * @param  String $category 分类
+     * @param  String $title    标题
+     * @return Array
+     */
+    public function createMarkdownFile($category, $title)
 	{
-		$config = Config::instance();
-		$markdownFile = $config->markdownPath."/".$title.".md";
-		$handle = fopen($markdownFile,"w");
+        $title = $this->_buildTitle($category, $title);
+		$markdownFile = $this->config->markdownPath."/".$title.".md";
+		$handle = fopen($markdownFile, "w");
 		fwrite($handle, "");
 		fclose($handle);
+        return [
+            'category' => $category,
+            'title' => $title
+        ];
 	}
 
-	public function putMarkdownContent($title, $content)
+    /**
+     * 设置Markdown内容
+     * @param  String $category 分类
+     * @param  String $title    标题
+     * @param  String $content  内容
+     * @return Array
+     */
+	public function putMarkdownContent($category, $title, $content)
 	{
-		$config = Config::instance();
-		$markdownFile = $config->markdownPath."/".$title.".md";
+        $title = $this->_buildTitle($category, $title);
+		$markdownFile = $this->config->markdownPath."/".$title.".md";
 		$handle = fopen($markdownFile,"w");
 		fwrite($handle, $content);
 		fclose($handle);
+        return [
+            'category' => $category,
+            'title' => $title,
+            'content' => $content
+        ];
 	}
 
 	public function mvMarkdownFile($oldTitle, $newTitle)
 	{
-		$config = Config::instance();
-		$oldMarkdownFile = $config->markdownPath."/".$oldTitle.".md";
-		$newMarkdownFile = $config->markdownPath."/".$newTitle.".md";
+		$oldMarkdownFile = $this->config->markdownPath."/".$oldTitle.".md";
+		$newMarkdownFile = $this->config->markdownPath."/".$newTitle.".md";
 		unlink($oldMarkdownFile);
 	}
 
 	public function delHtmlFile($category, $oldTitle, $newTitle)
 	{
-		$config = Config::instance();
 		//$newHtmlFile = $config->htmlPath.$category."/".$newTitle.".html";
-		$oldHtmlFile = $config->htmlPath.$category."/".$oldTitle.".html";
+		$oldHtmlFile = $this->config->htmlPath.$category."/".$oldTitle.".html";
 		//unlink($newHtmlFile);
 		unlink($oldHtmlFile);
 	}
+
+    private function _buildTitle($category, $title)
+    {
+        return date("YmdHis", time()).'_'.$category.'_'.$title;
+    }
 }
