@@ -3,7 +3,7 @@
 	"type": "library",
 	"description": "The Pwiki is a static page generator，it is github blog Artifact",
 	"homepage": "http://jmt33.github.com/mtao",
-	"keywords": ["pwiki"],
+	"keywords": ["pwiki", "wiki", "console wiki"],
 	"license": "MIT",
 	"version": "2.0.0-dev",
 	"authors": [
