@@ -57,6 +57,15 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testGetMarkdownContentByKey()
+    {
+        $this->assertFalse(
+            empty(
+                $this->pwiki->getMarkdownContentByKey(20160527221029)
+            )
+        );
+    }
+
     public function testSetCategory()
     {
         $info = $this->pwiki->createMarkdownFile(

@@ -63,6 +63,28 @@ class Pwiki
     }
 
     /**
+     * 获取文章内容
+     * @param  String $articleId 文章key
+     * @return String
+     */
+    public function getMarkdownContentByKey($articleId)
+    {
+        $data = current(
+            array_filter(
+                $this->config->data,
+                function($row) use ($articleId) {
+                    return $row['key'] == $articleId;
+                }
+            )
+        );
+        $markdownPath = $this->config->markdownPath;
+        $content = file_get_contents(
+            $markdownPath.$data['key'].'_'.$data['category'].'_'.$data['title'].'.md'
+        );
+        return $content;
+    }
+
+    /**
      * 新建Markdown文件
      * @param  String $category 分类
      * @param  String $title    标题
