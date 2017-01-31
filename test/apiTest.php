@@ -66,11 +66,12 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testSetCategory()
+    public function testNewMarkdown()
     {
-        $info = $this->pwiki->createMarkdownFile(
+        $info = $this->pwiki->newMarkdown(
             'Markdown',
-            'test'
+            'test',
+            'gogo'
         );
         $this->assertFileExists(
             $this->pwiki->config->markdownPath."/".$info['title'].".md"
@@ -80,7 +81,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     public function testPutMarkdownContent()
     {
         $info = $this->pwiki->putMarkdownContent(
-            'Markdown',
+            '20160527221029',
             'good',
             'mujia'
         );

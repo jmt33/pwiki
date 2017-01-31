@@ -69,14 +69,7 @@ class Pwiki
      */
     public function getMarkdownContentByKey($articleId)
     {
-        $data = current(
-            array_filter(
-                $this->config->data,
-                function($row) use ($articleId) {
-                    return $row['key'] == $articleId;
-                }
-            )
-        );
+        $data = $this->_getDataByArticleId($articleId);
         $markdownPath = $this->config->markdownPath;
         $content = file_get_contents(
             $markdownPath.$data['key'].'_'.$data['category'].'_'.$data['title'].'.md'
@@ -85,34 +78,46 @@ class Pwiki
     }
 
     /**
-     * 新建Markdown文件
-     * @param  String $category 分类
-     * @param  String $title    标题
-     * @return Array
-     */
-    public function createMarkdownFile($category, $title)
-	{
-        $title = $this->_buildTitle($category, $title);
-		$markdownFile = $this->config->markdownPath."/".$title.".md";
-		$handle = fopen($markdownFile, "w");
-		fwrite($handle, "");
-		fclose($handle);
-        return [
-            'category' => $category,
-            'title' => $title
-        ];
-	}
-
-    /**
      * 设置Markdown内容
      * @param  String $category 分类
      * @param  String $title    标题
      * @param  String $content  内容
      * @return Array
      */
-	public function putMarkdownContent($category, $title, $content)
+    public function newMarkdown($category, $title, $content)
 	{
         $title = $this->_buildTitle($category, $title);
+        $markdownFile = $this->config->markdownPath."/".$title.".md";
+		$handle = fopen($markdownFile,"w");
+		fwrite($handle, $content);
+		fclose($handle);
+        return [
+            'category' => $category,
+            'title' => $title,
+            'content' => $content
+        ];
+	}
+
+    /**
+     * 设置Markdown内容
+     * @param  String $key 唯一标识
+     * @param  String $title    标题
+     * @param  String $content  内容
+     * @return Array
+     */
+	public function putMarkdownContent($articleId, $title, $content)
+	{
+        $data = $this->_getDataByArticleId($articleId);
+        $category = $data['category'];
+        $title = $articleId.'_'.$category.'_'.$title;
+        if ($data['title'] !== $title) {
+            $oldTitle = $articleId.'_'.$category.'_'.$data['title'];
+            rename(
+                $this->config->markdownPath."/".$oldTitle.".md",
+                $this->config->markdownPath."/".$title.".md"
+            );
+        }
+
 		$markdownFile = $this->config->markdownPath."/".$title.".md";
 		$handle = fopen($markdownFile,"w");
 		fwrite($handle, $content);
@@ -123,6 +128,13 @@ class Pwiki
             'content' => $content
         ];
 	}
+
+    public function delete($articleId)
+    {
+        $data = $this->_getDataByArticleId($articleId);
+        $title = $data['key'].'_'.$data['category'].'_'.$data['title'];
+		return unlink($this->config->markdownPath."/".$title.".md");
+    }
 
 	public function mvMarkdownFile($oldTitle, $newTitle)
 	{
@@ -142,5 +154,17 @@ class Pwiki
     private function _buildTitle($category, $title)
     {
         return date("YmdHis", time()).'_'.$category.'_'.$title;
+    }
+
+    private function _getDataByArticleId($articleId)
+    {
+        return current(
+            array_filter(
+                $this->config->data,
+                function($row) use ($articleId) {
+                    return $row['key'] == $articleId;
+                }
+            )
+        );
     }
 }
