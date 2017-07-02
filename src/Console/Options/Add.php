@@ -5,8 +5,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Pwiki\Adapter\FileData;
-use Pwiki\Adapter\Source;
+use Pwiki\Config;
 
 class Add extends \Pwiki\Console\AbstractOption
 {
@@ -28,18 +27,9 @@ EOT
     {
 
         $title = $input->getArgument('title');
-
         $category = $input->getArgument('category');
-
-        $time = date("YmdHis", time());
-
-        $data = array(
-            'key' => $time,
-            'title' => $title,
-            'category' => $category
-        );
-
-        Source::setMarkdownFile($time."_".$category."_".$title);
+        $updater = new \Pwiki\Adapter\Updater(Config::instance());
+        $updater->newMarkdown($category, $title, '');
         $this->_w_info('新建成功！');
     }
 

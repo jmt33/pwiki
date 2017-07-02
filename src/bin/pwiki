@@ -13,5 +13,5 @@ foreach ($files as $file) {
         break;
     }
 }
-$app = new \Pwiki\Console\Run();
-$app->start();
+$app = new \Pwiki\Pwiki();
+$app->run();

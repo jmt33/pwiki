@@ -5,6 +5,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Pwiki\Config;
 
 class Status extends \Pwiki\Console\AbstractOption
 {
@@ -22,6 +23,7 @@ EOT
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-
+        $updater = new \Pwiki\Adapter\Updater(Config::instance());
+        print_r($updater->getArticles());
     }
 }

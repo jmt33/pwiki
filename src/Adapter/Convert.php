@@ -63,9 +63,9 @@ class Convert
 			";
 			$text = file_get_contents($this->_markdown);
 
-			$markdown = new Markdown();
-
-			$page_html = $markdown->text($text);
+			$markdown = new \cebe\markdown\GithubMarkdown();
+			$markdown->html5 = true;
+			$page_html = $markdown->parse($text);
 
 			$page_html = $head_html.$page_html;
 			$handle = fopen($this->_htmlFile, "w");
