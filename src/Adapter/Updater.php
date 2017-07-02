@@ -58,7 +58,7 @@ class Updater {
      */
     public function getMarkdownContentByKey($articleId)
     {
-        $data = $this->_getDataByArticleId($articleId);
+        $data = $this->getDataByArticleId($articleId);
         $markdownPath = $this->config->markdownPath;
         $content = file_get_contents(
             $markdownPath.$data['key'].'_'.$data['category'].'_'.$data['title'].'.md'

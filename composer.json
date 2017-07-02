@@ -22,9 +22,6 @@
 	"require-dev": {
         "phpunit/phpunit": "5.7.*"
     },
-	"bin": [
-        "src/bin/pwiki"
-    ],
 	"autoload": {
         "psr-4": { "Pwiki\\": "src/" }
     }
