@@ -67,7 +67,7 @@ class Updater {
         $updater = new \Pwiki\Adapter\Updater($this->config);
         return $updater->newMarkdown($articleId);
     }
-    
+
     /**
      * 设置Markdown内容
      * @param  String $category 分类
@@ -124,8 +124,19 @@ class Updater {
     public function delete($articleId)
     {
         $data = $this->getDataByArticleId($articleId);
-        $title = $data['key'].'_'.$data['category'].'_'.$data['title'];
-		return unlink($this->config->markdownPath."/".$title.".md");
+        $htmlTitle = $this->config->htmlPath.$data['category'].'/'.$data['key'].'_'.$data['title'].".html";
+        if (file_exists($htmlTitle)) {
+            unlink($htmlTitle);
+            $currentDir = $this->config->htmlPath.$data['category'];
+            $isEmpty = array_diff(scandir($currentDir), array('..', '.'));
+            if (empty($isEmpty)) {
+                rmdir($currentDir);
+            }
+            $convert = new Convert($articleId);
+            $convert->readyIndexContent();
+        }
+        $markdownTitle = $this->config->markdownPath."/".$data['key'].'_'.$data['category'].'_'.$data['title'].".md";
+		return file_exists($markdownTitle) ? unlink($markdownTitle) : false;
     }
 
 	public function mvMarkdownFile($oldTitle, $newTitle)
