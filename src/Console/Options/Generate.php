@@ -32,9 +32,9 @@ EOT
         $type = $input->getArgument('type');
         $ignore = $input->getArgument('ignore');
         $config = Config::instance();
-
         if ($type === 'all') {
             $data = $config->data;
+            $ignore = true;
             $keys = empty($data) ? [] : array_keys($data);
         } else {
             $key = $input->getArgument('key');

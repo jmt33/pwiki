@@ -20,7 +20,6 @@ class Convert
 	{
 		$this->config = Config::instance();
 		$this->_key = $key;
-
 		$this->setData($this->config->data);
 	}
 
@@ -118,6 +117,7 @@ HTML;
         <title>{$content['title']} - {$content['category']}</title>
         <link href="http://jmt33.github.io/mtao/static/css/tango.css" rel="stylesheet"></link>
         <link href="http://jmt33.github.io/mtao/static/css/style.css" rel="stylesheet"></link>
+		<link href="http://jmt33.github.io/mtao/static/css/prism.css" rel="stylesheet"></link>
     </head>
     <body>
         <div id="container">
@@ -125,6 +125,7 @@ HTML;
         </div>
 		{$this->config->commentPlugin}
     </body>
+	<script src="http://jmt33.github.io/mtao/static/js/prism.js"></script>
 </html>
 HTML;
 
