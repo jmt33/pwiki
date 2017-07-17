@@ -149,7 +149,7 @@ HTML;
 			    <body>
 			        <div id="container">
 
-				    <div id="wiki_title">有无相生，难易相成，长短相形，高下相盈，音声相和，前后相随。恒也 - 老子</div>
+				    <div id="wiki_title">纸上得来终觉浅,绝知此事要躬行</div>
 
 				    <div id="index">
 				    	{$index_html}
@@ -159,7 +159,7 @@ HTML;
 			        </div>
 			        <div id="footer">
 			            <span>
-			                Copyright © 2012-2016 Mtao.
+			                Copyright © 2017 Mtao.
 			            </span>
 			        </div>
 
